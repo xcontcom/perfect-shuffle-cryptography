@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Perfect Shuffle Demo</title>
+<style>
+body {
+	font-family: sans-serif;
+	background: #f0f0f0;
+	color: #333;
+	margin: 20px;
+}
+textarea {
+	width: 100%;
+	height: 80px;
+	font-family: monospace;
+}
+label {
+	display: inline-block;
+	margin-right: 10px;
+}
+</style>
+<script type="text/javascript" src="shuffle_text.js"></script>
+</head>
+<body>
+
+<h2>Perfect Shuffle Tool</h2>
+
+<div>
+	<label><input type="radio" name="mode" value="shuffle" checked> Shuffle</label>
+	<label><input type="radio" name="mode" value="unshuffle"> Unshuffle</label>
+</div>
+
+<p><strong>Original Sequence:</strong></p>
+<textarea id="original"></textarea>
+
+<p><strong>Key (generated or paste here):</strong></p>
+<textarea id="key" readonly></textarea>
+
+<p><strong>Processed Sequence:</strong></p>
+<textarea id="shuffled"></textarea>
+
+<p><strong>Sequence after Reversing:</strong></p>
+<textarea id="unshuffled"></textarea>
+
+<button onclick="process()">Process</button>
+
+</body>
+</html>
