@@ -8,8 +8,13 @@ Welcome to **Perfect Shuffle Cryptography**, a lightweight and elegant encryptio
 
 A **perfect shuffle** is a permutation technique where a sequence (like a deck of cards or a string of bits) is split into two equal halves and interleaved in a specific order. This project uses two types of perfect shuffles to encrypt and decrypt data:
 
-- **In-Shuffle**: The second half of the sequence is interleaved with the first half, starting with the second half. For a sequence `[A, B, C, D]` (split into `[A, B]` and `[C, D]`), an in-shuffle produces `[C, A, D, B]`.
-- **Out-Shuffle**: The first half of the sequence is interleaved with the second half, starting with the first half. For `[A, B, C, D]`, an out-shuffle produces `[A, C, B, D]`.
+- **In-Shuffle**: The second half of the sequence is interleaved with the first half, starting with the second half. For a sequence `[1, 2, 3, 4, 5, 6, 7, 8]` (split into `[1, 2, 3, 4]` and `[5, 6, 7, 8]`), an in-shuffle produces `[5, 1, 6, 2, 7, 3, 8, 4]`.
+
+![in-shuffle](images/in.png)
+
+- **Out-Shuffle**: The first half of the sequence is interleaved with the second half, starting with the first half. For `[1, 2, 3, 4, 5, 6, 7, 8]`, an out-shuffle produces `[1, 5, 2, 6, 3, 7, 4, 8]`.
+
+![out-shuffle](images/out.png)
 
 The sequence of in-shuffles (represented by `1`) and out-shuffles (represented by `0`) is determined by a binary key. For example, a key of `101` means: in-shuffle, out-shuffle, in-shuffle. This deterministic shuffling obscures the data, making it secure without the key.
 
