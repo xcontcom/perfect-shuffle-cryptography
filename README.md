@@ -51,6 +51,11 @@ The `shuffle_file.js` script encrypts and decrypts files using the perfect shuff
 
 ---
 
+### Forward Secrecy
+Because each message includes a freshly generated key, and you never reuse keys, this system provides forward secrecy: if an adversary obtains any future key, they cannot decrypt prior messages. Compromising one key only exposes the next messages, not past ones.
+
+---
+
 ### Text-Based Demo (`shuffle_text.html`)
 
 For an interactive experience, try the [online demo](https://xcont.com/shuffle_text/shuffle_text.html). The `shuffle_text.js` script powers a web-based tool that shuffles and unshuffles text sequences, demonstrating the algorithm in action.
