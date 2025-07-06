@@ -10,14 +10,22 @@
 		.block { border: 1px solid #fff; display:inline-block; margin: 10px; padding: 5px;}
 		.buttons { margin-top: 5px; }
 		.canvas-container {float:left; }
+		input[readonly] { background-color: #eee; color: #555; }
 	</style>
 </head>
 <body>
 	<h2>PNG Pixel Shuffle</h2>
 	<p>At the left side, upload a picture of your chonky cat. Press Shuffle. The shuffled picture will appear on the right side. <br />
 	Use the picture from the right side and the provided key to unshuffle back to the original.</p>
+	<div class="block">
 	<label>Key:</label>
-	<input type="text" id="keyInput" /><br /><br />
+	<input type="text" id="keyInput" />
+	<label>
+		<input type="checkbox" id="autoKey" checked="checked" onchange="updateKeyField();" />
+		Generate new key
+	</label>
+	</div>
+	<div style="clear:both">
 	<div class="block">
 		Change mod for 
 		<label><input type="radio" name="mode" value="shuffle" checked="checked" onchange="process();" /> Shuffle</label>

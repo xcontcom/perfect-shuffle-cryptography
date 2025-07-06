@@ -30,6 +30,14 @@ for (let i=0; i<4; i++) {
 	}
 }
 
+function updateKeyField(){
+	const keyField = document.getElementById('keyInput');
+	const autoKey = document.getElementById('autoKey').checked;
+	keyField.readOnly = autoKey;
+}
+
+updateKeyField();
+
 function loadImage(file, targetCanvas, callback) {
 	const img = new Image();
 	img.onload = () => {
@@ -100,11 +108,24 @@ function shuffle(){
 	}else{
 		consoleLog.innerHTML ="";
 	}
+	
+	const autoKey = document.getElementById('autoKey').checked;
 
-	// Generate random key
-	const keyBits = [];
-	for(let i=0;i<64;i++) keyBits.push(Math.round(Math.random()));
-	keyInput.value = keyBits.join("");
+	let keyBits = [];
+	if(autoKey){
+		// Generate new key
+		keyBits = [];
+		for(let i=0;i<64;i++) keyBits.push(Math.round(Math.random()));
+		keyInput.value = keyBits.join("");
+	} else {
+		// Use user-provided key
+		const keyStr = keyInput.value.trim();
+		if(!/^[01]+$/.test(keyStr)){
+			consoleLog.innerHTML = "Invalid key format (must be binary)";
+			return;
+		}
+		keyBits = keyStr.split("").map(c => c==="1"?1:0);
+	}
 
 	let pixels = JSON.parse(JSON.stringify(pixels1));
 	for(let i=0;i<keyBits.length;i++){
