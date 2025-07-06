@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>PNG Pixel Shuffle</title>
+	<style>
+		body { font-family: sans-serif; background-color:#ccc; }
+		canvas { border: 1px solid #fff; margin: 10px; }
+		input[type="text"] { width: 800px; }
+		.block { border: 1px solid #fff; display:inline-block; margin: 10px; padding: 5px;}
+		.buttons { margin-top: 5px; }
+		.canvas-container {float:left; }
+	</style>
+</head>
+<body>
+	<h2>PNG Pixel Shuffle</h2>
+	<p>At the left side, upload a picture of your chonky cat. Press Shuffle. The shuffled picture will appear on the right side. <br />
+	Use the picture from the right side and the provided key to unshuffle back to the original.</p>
+	<label>Key:</label>
+	<input type="text" id="keyInput" /><br /><br />
+	<div class="block">
+		Change mod for 
+		<label><input type="radio" name="mode" value="shuffle" checked="checked" onchange="process();" /> Shuffle</label>
+		<label><input type="radio" name="mode" value="unshuffle" onchange="process();" /> Unshuffle</label>
+		<br /><br />
+		<label>Mode (rotation in 4 quadrants)</label>
+		<select id="q0" onchange="process()"></select>
+		<select id="q1" onchange="process()"></select>
+		<select id="q2" onchange="process()"></select>
+		<select id="q3" onchange="process()"></select>
+	</div>
+	<div style="clear:both">
+	<div class="block">
+		<!-- Original Image Canvas and Controls -->
+		<div class="canvas-container">
+			<div class="button-group">
+				<input type="file" id="fileInput1" accept="image/*" />
+				<div class="buttons"><button onclick="shuffle();">Shuffle →</button></div>
+			</div>
+			<canvas id="canvas1"></canvas>
+		</div>
+
+		<!-- Shuffled Image Canvas and Controls -->
+		<div class="canvas-container">
+			<div class="button-group">
+				<input type="file" id="fileInput2" accept="image/*" />
+				<div class="buttons"><button onclick="unshuffle();">← Unshuffle</button></div>
+			</div>
+			<canvas id="canvas2"></canvas>
+		</div>
+	</div>
+	<div style="clear:both">
+	<div id="console-log" style="margin:10px; color:red; font-weight:bold;"></div>
+	<script src="shuffle_png_web_modes.js"></script>
+	<b><a href="https://github.com/xcontcom/perfect-shuffle-cryptography">https://github.com/xcontcom/perfect-shuffle-cryptography</a></b>
+</body>
+</html>
