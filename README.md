@@ -67,6 +67,24 @@ For an interactive experience, try the [online demo](https://xcont.com/shuffle_t
 
 ---
 
+### PNG Pixels Shuffle (`shuffle_png.js`)
+
+In addition to `shuffle_file.js`, which encrypts files by treating their binary data as a single bitstream, this project also includes `shuffle_png.js`. This script demonstrates a **spatial shuffle** of PNG image pixels, rather than raw bytes. 
+
+**Why a separate approach?**
+
+- The file-based shuffler (`shuffle_file.js`) operates at the byte level, which is format-agnostic but can break compression and headers, making files unreadable until fully unshuffled.
+- `shuffle_png.js` decodes the PNG into a 2D pixel array, recursively shuffles pixel positions, and re-encodes the image. This allows you to *see the effect visually* - the shuffled image still opens as a valid PNG, but appears scrambled.
+- It is useful for demonstration, educational purposes, or lightweight obfuscation where format integrity must be preserved.
+
+Below is an example of this process applied to a sample image:
+
+| Original Image | Shuffled Image | Wrong Key Attempt |
+|---|---|---|
+| ![Original](shuffle_png/reefer.png) | ![Shuffled](shuffle_png/reefer_shuffled.png) | ![Wrong Key](shuffle_png/reefer_unshuffled_with_wrong_key.png) |
+
+---
+
 #### How the Demo Works
 - **Input**: Enter a text sequence (e.g., `HelloWorld`) in the "Original Sequence" field.
 - **Mode**: Select "Shuffle" to encrypt or "Unshuffle" to decrypt.
