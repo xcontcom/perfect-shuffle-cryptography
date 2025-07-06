@@ -61,12 +61,6 @@ Because each message includes a freshly generated key, and you never reuse keys,
 
 ---
 
-### Text-Based Demo (`shuffle_text.html`)
-
-For an interactive experience, try the [online demo](https://xcont.com/shuffle_text/shuffle_text.html). The `shuffle_text.js` script powers a web-based tool that shuffles and unshuffles text sequences, demonstrating the algorithm in action.
-
----
-
 ### PNG Pixels Shuffle (`shuffle_png.js`)
 
 In addition to `shuffle_file.js`, which encrypts files by treating their binary data as a single bitstream, this project also includes `shuffle_png.js`. This script demonstrates a **spatial shuffle** of PNG image pixels, rather than raw bytes. 
@@ -82,6 +76,12 @@ Below is an example of this process applied to a sample image:
 | Original Image | Shuffled Image | Wrong Key Attempt |
 |---|---|---|
 | ![Original](shuffle_png/reefer.png) | ![Shuffled](shuffle_png/reefer_shuffled.png) | ![Wrong Key](shuffle_png/reefer_unshuffled_with_wrong_key.png) |
+
+---
+
+### Text-Based Demo (`shuffle_text.html`)
+
+For an interactive experience, try the [online demo](https://xcont.com/shuffle_text/shuffle_text.html). The `shuffle_text.js` script powers a web-based tool that shuffles and unshuffles text sequences, demonstrating the algorithm in action.
 
 ---
 
