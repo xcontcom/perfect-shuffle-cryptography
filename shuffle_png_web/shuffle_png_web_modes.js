@@ -9,6 +9,8 @@ const consoleLog=document.getElementById('console-log');
 
 let modeArray=[0,0,0,0];
 
+let originalPixels1 = null;
+
 const modes = [
 	"0 - None",
 	"1 - Rotate 90°",
@@ -30,6 +32,14 @@ for (let i=0; i<4; i++) {
 	}
 }
 
+function randomizeModes() {
+	for (let i = 0; i < 4; i++) {
+		const sel = document.getElementById("q" + i);
+		const randomValue = Math.floor(Math.random() * sel.options.length);
+		sel.value = randomValue;
+	}
+}
+
 function updateKeyField(){
 	const keyField = document.getElementById('keyInput');
 	const autoKey = document.getElementById('autoKey').checked;
@@ -37,6 +47,28 @@ function updateKeyField(){
 }
 
 updateKeyField();
+
+function updateResizeField() {
+	const resizeEnabled = document.getElementById("resizeCheckbox").checked;
+	const resizeInput = document.getElementById("resizeSize");
+	resizeInput.readOnly = !resizeEnabled;
+}
+
+updateResizeField();
+
+function resizePixels(pixels, targetSize) {
+	const sourceSize = pixels.length;
+	const resized = new Array(targetSize);
+	for (let y = 0; y < targetSize; y++) {
+		resized[y] = new Array(targetSize);
+		const srcY = Math.floor(y * sourceSize / targetSize);
+		for (let x = 0; x < targetSize; x++) {
+			const srcX = Math.floor(x * sourceSize / targetSize);
+			resized[y][x] = pixels[srcY][srcX];
+		}
+	}
+	return resized;
+}
 
 function loadImage(file, targetCanvas, callback) {
 	const img = new Image();
@@ -75,7 +107,11 @@ function loadImage(file, targetCanvas, callback) {
 document.getElementById('fileInput1').addEventListener('change', e => {
 	const file = e.target.files[0];
 	if (file) {
-		loadImage(file, canvas1, (pix) => { pixels1 = pix; pixels2 = null; });
+		loadImage(file, canvas1, (pix) => { 
+			originalPixels1 = pix; 
+			pixels1 = pix; // initialize pixels1 to original size
+			pixels2 = null; 
+		});
 	}
 });
 
@@ -127,7 +163,20 @@ function shuffle(){
 		keyBits = keyStr.split("").map(c => c==="1"?1:0);
 	}
 
-	let pixels = JSON.parse(JSON.stringify(pixels1));
+	let basePixels = originalPixels1;
+	const resizeEnabled = document.getElementById("resizeCheckbox").checked;
+	let targetSize = parseInt(document.getElementById("resizeSize").value);
+	if (targetSize % 2 !== 0) targetSize--;
+	
+	if (resizeEnabled) {
+		basePixels = resizePixels(basePixels, targetSize);
+	}
+	
+	width = basePixels.length;
+	height = basePixels.length;
+	
+	let pixels = JSON.parse(JSON.stringify(basePixels));
+
 	for(let i=0;i<keyBits.length;i++){
 		pixels = shuffle2D(pixels, keyBits[i], modeArray);
 	}
@@ -266,7 +315,7 @@ function shuffle2D(array, inShuffle=true, modeArray=[0,0,0,0]){
 		BL[y]=array[y+half].slice(0,half);
 		BR[y]=array[y+half].slice(half);
 	}
-
+	
 	// Rotate quadrants
 	const TLr=rotateQuadrant(TL, modeArray[0]);
 	const TRr=rotateQuadrant(TR, modeArray[1]);

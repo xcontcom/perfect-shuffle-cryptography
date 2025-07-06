@@ -15,7 +15,7 @@
 			height: auto;
 			display: block;
 		}
-		input[readonly] { background-color: #eee; color: #555; }
+		input[readonly] { background-color: #eee; color: #999; }
 	</style>
 </head>
 <body>
@@ -30,7 +30,7 @@
 		Generate new key
 	</label>
 	</div>
-	<div style="clear:both">
+	<div style="clear:both" />
 	<div class="block">
 		Change mod for 
 		<label><input type="radio" name="mode" value="shuffle" checked="checked" onchange="process();" /> Shuffle</label>
@@ -41,8 +41,23 @@
 		<select id="q1" onchange="process()"></select>
 		<select id="q2" onchange="process()"></select>
 		<select id="q3" onchange="process()"></select>
+		<div style="margin-top: 5px;">
+			<button onclick="randomizeModes(); process();">Random Modes</button>
+		</div>
 	</div>
-	<div style="clear:both">
+	<div style="clear:both" />
+	<div class="block">
+		<label>
+			<input type="checkbox" id="resizeCheckbox" onchange="updateResizeField(); process();" />
+			Resize image
+		</label>
+		<input type="number" id="resizeSize" value="1024" min="32" step="1" style="width:80px" readonly="readonly" onchange="process();" />
+		px
+		<div style="font-size: 0.9em; color: #555; max-width: 300px; margin-top: 4px;">
+			Use 2<sup>n</sup> to draw fractals. For scrambling pixels use different.
+		</div>
+	</div>
+	<div style="clear:both" />
 	<div class="block">
 		<!-- Original Image Canvas and Controls -->
 		<div class="canvas-container">
@@ -62,9 +77,20 @@
 			<canvas id="canvas2"></canvas>
 		</div>
 	</div>
-	<div style="clear:both">
+	<div style="clear:both" />
 	<div id="console-log" style="margin:10px; color:red; font-weight:bold;"></div>
 	<script src="shuffle_png_web_modes.js"></script>
 	<b><a href="https://github.com/xcontcom/perfect-shuffle-cryptography">https://github.com/xcontcom/perfect-shuffle-cryptography</a></b>
+	<div style="margin-top:20px; font-size:0.95em; color:#444; max-width:600px;">
+	<b>Quick Guide:</b><br />
+	To create cool fractals:<br />
+	- Uncheck <i>"Generate new key"</i> and enter the key <code>1111111111</code><br />
+	- Check <i>"Resize image"</i> and set size to <b>1024 px</b> (2<sup>n</sup> sizes produce fractals).<br />
+	- Upload a picture of your chonky cat.<br />
+	- Click <b>"Random Modes"</b> to explore patterns.<br /><br />
+	To scramble your image instead:<br />
+	- Keep <i>"Generate new key"</i> checked.<br />
+	- Use a size <b>not</b> equal to 2<sup>n</sup> (e.g., 754, 902) to avoid recognizable patterns.
+	</div>
 </body>
 </html>
