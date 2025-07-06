@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>PNG Pixel Shuffle</title>
+    <style>
+        body { font-family: sans-serif; }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+        input[type="text"] { width: 800px; }
+    </style>
+</head>
+<body>
+    <h2>PNG Pixel Shuffle</h2>
+	<p>At the left side, upload a picture of your chonky cat. Press Shuffle. The shuffled picture will appear on the right side. <br />
+	Use the picture from the right side and the provided key to unshuffle back to the original.</p>
+    <label>Key:</label>
+    <input type="text" id="keyInput"><br><br>
 
+    <div style="display: flex;">
+        <!-- Original Image Canvas and Controls -->
+        <div class="canvas-container">
+            <div class="button-group">
+                <input type="file" id="fileInput1" accept="image/png">
+                <div><button onclick="shuffle()">Shuffle →</button></div>
+            </div>
+            <canvas id="canvas1"></canvas>
+        </div>
+
+        <!-- Shuffled Image Canvas and Controls -->
+        <div class="canvas-container">
+            <div class="button-group">
+                <input type="file" id="fileInput2" accept="image/png">
+                <div><button onclick="unshuffle()">← Unshuffle</button></div>
+            </div>
+            <canvas id="canvas2"></canvas>
+        </div>
+    </div>
+
+    <script src="shuffle_png_web.js"></script>
+    <b><a href="https://github.com/xcontcom/perfect-shuffle-cryptography">https://github.com/xcontcom/perfect-shuffle-cryptography</a></b>
+</body>
+</html>
