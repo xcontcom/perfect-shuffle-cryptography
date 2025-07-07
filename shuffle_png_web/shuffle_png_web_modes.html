@@ -16,6 +16,7 @@
 			display: block;
 		}
 		input[readonly] { background-color: #eee; color: #999; }
+		.key { padding-top: 5px; }
 	</style>
 </head>
 <body>
@@ -29,6 +30,7 @@
 		<input type="checkbox" id="autoKey" checked="checked" onchange="updateKeyField();" />
 		Generate new key
 	</label>
+	<div class="key">Key length <input type="number" id="keySize" value="64" min="1" step="1" style="width:80px" /></div>
 	</div>
 	<div style="clear:both" />
 	<div class="block">
@@ -66,6 +68,9 @@
 				<div class="buttons"><button onclick="shuffle();">Shuffle →</button></div>
 			</div>
 			<canvas id="canvas1"></canvas>
+			<div class="buttons">
+				<button onclick="downloadCanvas(canvas1)">Download Image</button>
+			</div>
 		</div>
 
 		<!-- Shuffled Image Canvas and Controls -->
@@ -75,11 +80,14 @@
 				<div class="buttons"><button onclick="unshuffle();">← Unshuffle</button></div>
 			</div>
 			<canvas id="canvas2"></canvas>
+			<div class="buttons">
+				<button onclick="downloadCanvas(canvas2)">Download Image</button>
+			</div>
 		</div>
 	</div>
 	<div style="clear:both" />
 	<div id="console-log" style="margin:10px; color:red; font-weight:bold;"></div>
-	<script src="shuffle_png_web_modes.js"></script>
+	<script src="shuffle_png_web_modes.js?v=2"></script>
 	<b><a href="https://github.com/xcontcom/perfect-shuffle-cryptography">https://github.com/xcontcom/perfect-shuffle-cryptography</a></b>
 	<div style="margin-top:20px; font-size:0.95em; color:#444; max-width:600px;">
 	<b>Quick Guide:</b><br />

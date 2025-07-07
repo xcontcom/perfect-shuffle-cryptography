@@ -40,6 +40,13 @@ function randomizeModes() {
 	}
 }
 
+function downloadCanvas(canvas) {
+	const link = document.createElement('a');
+	link.download = 'shuffled_image.png';
+	link.href = canvas.toDataURL('image/png');
+	link.click();
+}
+
 function updateKeyField(){
 	const keyField = document.getElementById('keyInput');
 	const autoKey = document.getElementById('autoKey').checked;
@@ -146,12 +153,13 @@ function shuffle(){
 	}
 	
 	const autoKey = document.getElementById('autoKey').checked;
+	const keySize = parseInt(document.getElementById('keySize').value);
 
 	let keyBits = [];
 	if(autoKey){
 		// Generate new key
 		keyBits = [];
-		for(let i=0;i<64;i++) keyBits.push(Math.round(Math.random()));
+		for(let i=0;i<keySize;i++) keyBits.push(Math.round(Math.random()));
 		keyInput.value = keyBits.join("");
 	} else {
 		// Use user-provided key
@@ -176,7 +184,7 @@ function shuffle(){
 	height = basePixels.length;
 	
 	let pixels = JSON.parse(JSON.stringify(basePixels));
-
+	
 	for(let i=0;i<keyBits.length;i++){
 		pixels = shuffle2D(pixels, keyBits[i], modeArray);
 	}
