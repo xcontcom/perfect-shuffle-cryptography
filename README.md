@@ -78,6 +78,7 @@ Below is an example of this process applied to a sample image:
 | ![Original](shuffle_png/reefer.png) | ![Shuffled](shuffle_png/reefer_shuffled.png) | ![Wrong Key](shuffle_png/reefer_unshuffled_with_wrong_key.png) |
 
 [online demo](https://xcont.com/shuffle_text/shuffle_png_web_modes.html)
+[online demo (mirror)](https://xcontcom.github.io/perfect-shuffle-cryptography/shuffle_png_web/shuffle_png_web_modes.html)
 
 ---
 
